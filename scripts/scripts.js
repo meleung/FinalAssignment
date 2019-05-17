@@ -7,51 +7,25 @@ var $ = function (id) {
 
 function validateCard(ccn) {
     "use strict";
-    var sum = 0, digit;
+    var sum = 0, digit, doubleThis = false;
     
-    /*
     while (ccn >= 1) {
         digit = ccn % 10;
         ccn = (ccn - digit) / 10;
-        
+
         if (doubleThis === true) {
             // Double this digit
             digit *= 2;
-            
+
             // Re-adjust digit/sum if greater than 10
             if (digit >= 10) {
                 sum += 1;
                 digit = digit % 10;
             }
         }
-        
+
         sum += digit;
         doubleThis = !doubleThis;
-    }
-    */
-    
-    while (ccn >= 10) {
-        // Parse and add odd digits
-        digit = ccn % 10;
-        ccn = (ccn - digit) / 10;
-        
-        sum += digit;
-        
-        // Parse even digit and calculate value to add
-        digit = ccn % 10;
-        ccn = (ccn - digit) / 10;
-        digit *= 2;
-        
-        if (digit >= 10) {
-            digit = digit % 10;
-            sum += 1;
-        }
-        
-        sum += digit;
-    }
-    // If the number has odd number of digits, add the last digit to the sum.
-    if (ccn >= 1) {
-        sum += digit;
     }
     
     return (sum % 10 === 0) ? true : false;
