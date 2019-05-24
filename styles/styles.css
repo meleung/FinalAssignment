@@ -1,0 +1,32 @@
+#pizzaPart {
+    background-color: red;
+}
+#custInfo {
+    background-color: yellow;
+}
+#billInfo {
+    background-color: green;
+}
+form {
+    background: orange;
+}
+#title, footer {
+    background: blue;
+    min-height: 100px;
+}
+body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+}
+header, footer {
+    grid-column: span 3;
+}
+body form {
+    display: grid;
+    grid-column: span 3;
+    grid-template-columns: repeat(3, 1fr);
+}
+form fieldset {
+    
+}
