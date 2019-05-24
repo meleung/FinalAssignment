@@ -6,7 +6,111 @@
     <script src="scripts/scripts.js"></script>
 </head>
 <body>
-    <form>
+    <form id="pizzaForm">
+        <fieldset>
+            <legend>Pizza</legend>
+            <!-- Dough -->
+            <div id="doughDiv">
+               <p>Dough:</p>
+                <!--
+                    Radio buttons:
+                    - Hand Tossed
+                    - Thin Crust
+                    - New York Style
+                    - Gluten Free
+                -->
+                <input type="radio" name="dough_type" id="dough_hand_tossed" value="Hand Tossed"><label for="dough_hand_tossed">Hand Tossed</label>
+                <input type="radio" name="dough_type" id="dough_thin_crust" value="Thin Crust"><label for="dough_thin_crust">Thin Crust</label>
+                <input type="radio" name="dough_type" id="dough_new_york" value="New York Style"><label for="dough_new_york">New York Style</label>
+                <input type="radio" name="dough_type" id="dough_gluten-free" value="Gluten Free"><label for="dough_gluten-free">Gluten Free</label>
+            </div>
+            <!-- Size/Cost -->
+               <p>Size/Cost:</p>
+                <!--
+                    Drop down (depending on dough):
+                    - Hand Tossed -> Small ($9.99), Medium ($12.99), Large ($14.99)
+                    - Thin Crust -> Medium ($11.99), Large )$13.99)
+                    - New York Style -> Large ($16.99), Extra Large ($19.99)
+                    - Gluten Free -> Small ($10.99)
+                -->
+                <select name="size" id="size"></select>
+            <!-- Cheese -->
+               <p>Cheese:</p>
+                <!--
+                    Drop down:
+                    - Light (no charge)
+                    - Normal (default; no charge)
+                    - Extra (+$2.99)
+                    - Double (+$3.99)
+                -->
+                <select name="cheese">
+                    <option value="light">Light (no charge)</option>
+                    <option value="normal">Normal (no charge)</option>
+                    <option value="extra">Extra (+2.99)</option>
+                    <option value="double">Double (+3.99)</option>
+                </select>
+            <!-- Sauce -->
+               <p>Sauce:</p>
+                <!--
+                    Drop down:
+                    - Regular Tomato (no charge)
+                    - Hearty Tomato (+$0.99)
+                    - BBQ Sauce (+$1.99)
+                -->
+                <select name="sauce">
+                    <option value="regular">Regular Tomato (no charge)</option>
+                    <option value="hearty">Heart Tomato (+0.99)</option>
+                    <option value="bbq">BBQ Sauce (+1.99)</option>
+                </select>
+            <!-- Toppings -->
+               <p>Toppings:</p>
+                <!--
+                    Checkbox (+$0.99 per):
+                    - Pepperoni
+                    - Sausage
+                    - Ham
+                    - Bacon
+                    - Salami
+                    - Peppers
+                    - Olives
+                    - Jalapenos
+                    - Mushrooms
+                    - Pineapple
+                    - Onion
+                -->
+                <input type="checkbox" name="topping" id="topping_pepperoni" value="Pepperoni">
+                <label for="topping_pepperoni">Pepperoni</label>
+                
+                <input type="checkbox" name="topping" id="topping_sausage" value="Sausage">
+                <label for="topping_sausage">Sausage</label>
+                
+                <input type="checkbox" name="topping" id="topping_ham" value="Ham">
+                <label for="topping_sausage">Ham</label>
+                
+                <input type="checkbox" name="topping" id="topping_bacon" value="Bacon">
+                <label for="topping_bacon">Bacon</label>
+                
+                <input type="checkbox" name="topping" id="topping_salami" value="Salami">
+                <label for="topping_salami">Salami</label>
+                
+                <input type="checkbox" name="topping" id="topping_peppers" value="Peppers">
+                <label for="topping_peppers">Peppers</label>
+                
+                <input type="checkbox" name="topping" id="topping_olives" value="Olives">
+                <label for="topping_olives">Olives</label>
+                
+                <input type="checkbox" name="topping" id="topping_jalapenos" value="Jalapenos">
+                <label for="topping_jalapenos">Jalapenos</label>
+                
+                <input type="checkbox" name="topping"  id="topping_mushrooms" value="Mushrooms">
+                <label for="topping_mushrooms">Mushrooms</label>
+                
+                <input type="checkbox" name="topping"  id="topping_pineapple" value="Pineapple">
+                <label for="topping_pineapple">Pineapple</label>
+                
+                <input type="checkbox" name="topping" id="topping_onion" value="Onion">
+                <label for="topping_onion">Onion</label>
+        </fieldset>
         <fieldset>
             <legend>Customer Information</legend>
             <!-- Name -->
@@ -62,108 +166,6 @@
                 <select name="bill_exp_year"></select>
                 <!-- Drop down: Month -->
                 <select name="bill_exp_month"></select>
-        </fieldset>
-        <fieldset>
-            <legend>Pizza</legend>
-            <!-- Dough -->
-               <p>Dough:</p>
-                <!--
-                    Radio buttons:
-                    - Hand Tossed
-                    - Thin Crust
-                    - New York Style
-                    - Gluten Free
-                -->
-                <input type="radio" name="dough_type" id="dough_hand_tossed" value="Hand Tossed"><label for="dough_hand_tossed">Hand Tossed</label>
-                <input type="radio" name="dough_type" id="dough_thin_crust" value="Thin Crust"><label for="dough_thin_crust">Thin Crust</label>
-                <input type="radio" name="dough_type" id="dough_new_york" value="New York Style"><label for="dough_new_york">New York Style</label>
-                <input type="radio" name="dough_type" id="dough_gluten-free" value="Gluten Free"><label for="dough_gluten-free">Gluten Free</label>
-            <!-- Size/Cost -->
-               <p>Size/Cost:</p>
-                <!--
-                    Drop down (depending on dough):
-                    - Hand Tossed -> Small ($9.99), Medium ($12.99), Large ($14.99)
-                    - Thin Crust -> Medium ($11.99), Large )$13.99)
-                    - New York Style -> Large ($16.99), Extra Large ($19.99)
-                    - Gluten Free -> Small ($10.99)
-                -->
-                <select name="size"></select>
-            <!-- Cheese -->
-               <p>Cheese:</p>
-                <!--
-                    Drop down:
-                    - Light (no charge)
-                    - Normal (default; no charge)
-                    - Extra (+$2.99)
-                    - Double (+$3.99)
-                -->
-                <select name="cheese">
-                    <option value="light">Light (no charge)</option>
-                    <option value="normal">Normal (no charge)</option>
-                    <option value="extra">Extra (+2.99)</option>
-                    <option value="double">Double (+3.99)</option>
-                </select>
-            <!-- Sauce -->
-               <p>Sauce:</p>
-                <!--
-                    Drop down:
-                    - Regular Tomato (no charge)
-                    - Hearty Tomato (+$0.99)
-                    - BBQ Sauce (+$1.99)
-                -->
-                <select name="sauce">
-                    <option value="regular">Regular Tomato (no charge)</option>
-                    <option value="hearty">Heart Tomato (+0.99)</option>
-                    <option value="bbq">BBQ Sauce (+1.99)</option>
-                </select>
-            <!-- Toppings -->
-               <p>Toppings:</p>
-                <!--
-                    Checkbox (+$0.99 per):
-                    - Pepperoni
-                    - Sausage
-                    - Ham
-                    - Bacon
-                    - Salami
-                    - Peppers
-                    - Olives
-                    - Jalapenos
-                    - Mushrooms
-                    - Pineapple
-                    - Onion
-                -->
-                <input type="checkbox" name="topping" id="topping_pepperoni" value="Pepperoni">
-                <label for="topping_pepperoni">Pepperoni</label>
-                
-                <input type="checkbox" name="topping" id="topping_sausage" value="Sausage">
-                <label for="topping_sausage">Sausage</label>
-                
-                <input type="checkbox" name="topping" id="topping_ham" value="Ham">
-                <label for="topping_sausage">Sausage</label>
-                
-                <input type="checkbox" name="topping" id="topping_bacon" value="Bacon">
-                <label for="topping_bacon">Bacon</label>
-                
-                <input type="checkbox" name="topping" id="topping_salami" value="Salami">
-                <label for="topping_salami">Salami</label>
-                
-                <input type="checkbox" name="topping" id="topping_peppers" value="Peppers">
-                <label for="topping_peppers">Peppers</label>
-                
-                <input type="checkbox" name="topping" id="topping_olives" value="Olives">
-                <label for="topping_olives">Olives</label>
-                
-                <input type="checkbox" name="topping" id="topping_jalapenos" value="Jalapenos">
-                <label for="topping_jalapenos">Jalapenos</label>
-                
-                <input type="checkbox" name="topping"  id="topping_mushrooms" value="Mushrooms">
-                <label for="topping_mushrooms">Mushrooms</label>
-                
-                <input type="checkbox" name="topping"  id="topping_pineapple" value="Pineapple">
-                <label for="topping_pineapple">Pineapple</label>
-                
-                <input type="checkbox" name="topping" id="topping_onion" value="Onion">
-                <label for="topping_onion">Onion</label>
         </fieldset>
         <!-- "Finished Building Pizza" Button -->
         <input type="submit" value="Finished Building Pizza" id="orderPizzaBtn">
