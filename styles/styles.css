@@ -7,6 +7,9 @@
 #billInfo {
     background-color: green;
 }
+#cartInfo {
+	background-color: aqua;
+}
 form {
     background: orange;
 }
@@ -22,16 +25,21 @@ body {
 header, footer {
     grid-column: span 3;
 }
-body form {
+body div {
+	display: grid;
+	grid-column: span 3;
+	grid-template-columns: 200px repeat(6, 1fr);
+	grid-template-rows: auto;
+}
+body div aside {
+	grid-column: span 1;
+}
+body div form {
     display: grid;
-    grid-column: span 3;
+    grid-column: span 6;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2 400px);
 }
-form fieldset {
-    grid-column: span 1;
-}
-#pizzaPart {
-    grid-column: span 2;
-    grid-row: span 2;
+body div form fieldset {
+    grid-column: span 3;
 }
