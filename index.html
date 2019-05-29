@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Luigi's Pizza - Place Order</title>
+    <script src="scripts/pizza.js"></script>
     <script src="scripts/scripts.js"></script>
 </head>
 <body>
     <form id="pizzaForm">
-        <fieldset>
+        <fieldset id="iPizza">
             <legend>Pizza</legend>
             <!-- Dough -->
             <div id="doughDiv">
@@ -25,6 +26,7 @@
                 <input type="radio" name="dough_type" id="dough_gluten-free" value="Gluten Free"><label for="dough_gluten-free">Gluten Free</label>
             </div>
             <!-- Size/Cost -->
+            <div id="sizeDiv">
                <p>Size/Cost:</p>
                 <!--
                     Drop down (depending on dough):
@@ -34,7 +36,9 @@
                     - Gluten Free -> Small ($10.99)
                 -->
                 <select name="size" id="size"></select>
+            </div>
             <!-- Cheese -->
+            <div id="cheeseDiv">
                <p>Cheese:</p>
                 <!--
                     Drop down:
@@ -49,7 +53,9 @@
                     <option value="extra">Extra (+2.99)</option>
                     <option value="double">Double (+3.99)</option>
                 </select>
+            </div>
             <!-- Sauce -->
+            <div id="sauceDiv">
                <p>Sauce:</p>
                 <!--
                     Drop down:
@@ -59,10 +65,12 @@
                 -->
                 <select name="sauce">
                     <option value="regular">Regular Tomato (no charge)</option>
-                    <option value="hearty">Heart Tomato (+0.99)</option>
+                    <option value="hearty">Hearty Tomato (+0.99)</option>
                     <option value="bbq">BBQ Sauce (+1.99)</option>
                 </select>
+            </div>
             <!-- Toppings -->
+            <div id="toppingsDiv">
                <p>Toppings:</p>
                 <!--
                     Checkbox (+$0.99 per):
@@ -110,6 +118,7 @@
                 
                 <input type="checkbox" name="topping" id="topping_onion" value="Onion">
                 <label for="topping_onion">Onion</label>
+            </div>
         </fieldset>
         <fieldset>
             <legend>Customer Information</legend>
