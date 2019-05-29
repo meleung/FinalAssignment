@@ -47,7 +47,7 @@ var gSizes = {
 
 function Pizza(iDough) {
     "use strict";
-    var dough, size, sizes = [], cheese, sauce, toppings, cost = 0;
+    var dough, size, sizes = [], cheese, sauce, toppings = [], cost = 0;
     dough = iDough;
     
     function setSizes(dough) {

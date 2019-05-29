@@ -188,11 +188,6 @@ function intDisplayPizza(pizza) {
     }
 }
 
-function iPizzaHandler(e) {
-    "use strict";
-    window.console.log(e.target);
-}
-
 window.addEventListener("load", function () {
     "use strict";
     var test, testPizza;
@@ -201,7 +196,6 @@ window.addEventListener("load", function () {
     
     $("orderPizzaBtn").addEventListener("click", takeOrderHandler);
     
-    $("iPizza").addEventListener("click", iPizzaHandler);
     $("doughDiv").addEventListener("click", doughSelectedHandler);
     $("sizeDiv").addEventListener("click", sizeSelectedHandler);
     $("cheeseDiv").addEventListener("click", cheeseSelectedHandler);
