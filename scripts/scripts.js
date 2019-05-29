@@ -6,35 +6,33 @@ var $ = function (id) {
     return window.document.getElementById(id);
 };
 
-function CreditCard() {
-    "use strict";
-    return {
-        validateNumber: function (ccn) {
-            var sum = 0, digit, doubleThis = false;
+var CreditCard = {
+    validateNumber: function (ccn) {
+        "use strict";
+        var sum = 0, digit, doubleThis = false;
 
-            while (ccn >= 1) {
-                digit = ccn % 10;
-                ccn = (ccn - digit) / 10;
+        while (ccn >= 1) {
+            digit = ccn % 10;
+            ccn = (ccn - digit) / 10;
 
-                if (doubleThis === true) {
-                    // Double this digit
-                    digit *= 2;
+            if (doubleThis === true) {
+                // Double this digit
+                digit *= 2;
 
-                    // Re-adjust digit/sum if greater than 10
-                    if (digit >= 10) {
-                        sum += 1;
-                        digit = digit % 10;
-                    }
+                // Re-adjust digit/sum if greater than 10
+                if (digit >= 10) {
+                    sum += 1;
+                    digit = digit % 10;
                 }
-
-                sum += digit;
-                doubleThis = !doubleThis;
             }
 
-            return (sum % 10 === 0) ? true : false;
+            sum += digit;
+            doubleThis = !doubleThis;
         }
-    };
-}
+
+        return (sum % 10 === 0) ? true : false;
+    }
+};
 
 function validateCard(ccn) {
     "use strict";
@@ -60,31 +58,6 @@ function validateCard(ccn) {
     }
     
     return (sum % 10 === 0) ? true : false;
-}
-
-function parsePizza(form) {
-    "use strict";
-    var dough, size, cheese, sauce, toppings = [], pizza;
-    dough = form.elements.dough_type.value;
-    size = form.elements.size.value;
-    cheese = form.elements.cheese.value;
-    sauce = form.elements.sauce.value;
-    form.elements.topping.forEach(function (e) {
-        if (e.checked) {
-            toppings.push(e.value);
-        }
-    });
-    pizza = new Pizza(dough);
-    pizza.setSize(size);
-    pizza.setCheese(cheese);
-    pizza.setSauce(sauce);
-    pizza.setToppings(toppings);
-    window.console.log(pizza.getSizes());
-    window.console.log("dough: " + pizza.getDough());
-    window.console.log("size: " + pizza.getSize());
-    window.console.log("cheese: " + pizza.getCheese());
-    window.console.log("sauce: " + pizza.getSauce());
-    window.console.log("toppings: " + pizza.getToppings());
 }
 
 function populateSize(pizza) {
@@ -164,11 +137,47 @@ function toppingsSelectedHandler(e) {
     window.console.log(e.target.value);
 }
 
+function parsePizza(form) {
+    "use strict";
+    var dough, size, cheese, sauce, toppings = [], pizza;
+    dough = form.elements.dough_type.value;
+    size = form.elements.size.value;
+    cheese = form.elements.cheese.value;
+    sauce = form.elements.sauce.value;
+    form.elements.topping.forEach(function (e) {
+        if (e.checked) {
+            toppings.push(e.value);
+        }
+    });
+    pizza = new Pizza(dough);
+    pizza.setSize(size);
+    pizza.setCheese(cheese);
+    pizza.setSauce(sauce);
+    pizza.setToppings(toppings);
+    window.console.log(pizza.getSizes());
+    window.console.log("dough: " + pizza.getDough());
+    window.console.log("size: " + pizza.getSize());
+    window.console.log("cheese: " + pizza.getCheese());
+    window.console.log("sauce: " + pizza.getSauce());
+    window.console.log("toppings: " + pizza.getToppings());
+}
+
+function parseCustomer(form) {
+    "use strict";
+}
+
+function parseBilling(form) {
+    "use strict";
+}
+
 function takeOrderHandler(e) {
     "use strict";
+    var form = $("pizzaForm");
     e.preventDefault();
     window.console.log("Clicked");
-    parsePizza($("pizzaForm"));
+    parsePizza(form);
+    parseCustomer(form);
+    parseBilling(form);
 }
 
 function intDisplayPizza(pizza) {
@@ -210,7 +219,7 @@ window.addEventListener("load", function () {
     intDisplayPizza(testPizza);
     
     test = 4512113014843252;
-    window.console.log(test + ": " + (new CreditCard().validateNumber(test) ? "valid" : "invalid"));
+    window.console.log(test + ": " + (new CreditCard.validateNumber(test) ? "valid" : "invalid"));
     
     test = 4512113014643252;
     window.console.log(test + ": " + (validateCard(test) ? "valid" : "invalid"));
