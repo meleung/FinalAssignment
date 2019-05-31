@@ -6,59 +6,63 @@ var $ = function (id) {
     return window.document.getElementById(id);
 };
 
-var CreditCard = {
-    validateNumber: function (ccn) {
-        "use strict";
-        var sum = 0, digit, doubleThis = false;
-
-        while (ccn >= 1) {
-            digit = ccn % 10;
-            ccn = (ccn - digit) / 10;
-
-            if (doubleThis === true) {
-                // Double this digit
-                digit *= 2;
-
-                // Re-adjust digit/sum if greater than 10
-                if (digit >= 10) {
-                    sum += 1;
-                    digit = digit % 10;
-                }
-            }
-
-            sum += digit;
-            doubleThis = !doubleThis;
-        }
-
-        return (sum % 10 === 0) ? true : false;
-    }
-};
-
-function validateCard(ccn) {
+var CreditCard = function (n) {
     "use strict";
-    var sum = 0, digit, doubleThis = false;
-    
-    while (ccn >= 1) {
-        digit = ccn % 10;
-        ccn = (ccn - digit) / 10;
+    var ccn = n, cvc;
+    return {
+        isValid: function () {
+            var sum = 0, digit, doubleThis = false, iCcn = ccn;
 
-        if (doubleThis === true) {
-            // Double this digit
-            digit *= 2;
+            while (iCcn >= 1) {
+                digit = iCcn % 10;
+                iCcn = (iCcn - digit) / 10;
 
-            // Re-adjust digit/sum if greater than 10
-            if (digit >= 10) {
-                sum += 1;
-                digit = digit % 10;
+                if (doubleThis === true) {
+                    // Double this digit
+                    digit *= 2;
+
+                    // Re-adjust digit/sum if greater than 10
+                    if (digit >= 10) {
+                        sum += 1;
+                        digit = digit % 10;
+                    }
+                }
+
+                sum += digit;
+                doubleThis = !doubleThis;
+            }
+
+            return (sum % 10 === 0) ? true : false;
+        },
+        setNumber : function (n) {
+            ccn = n;
+            return this;
+        },
+        getNumber : function () {
+            return ccn;
+        },
+        setCVC : function (n) {
+            cvc = n;
+            return this;
+        },
+        getCVC : function () {
+            return cvc;
+        },
+        getType : function () {
+            var sCCN = ccn.toString(),
+                visaExp = new RegExp(/^4(\d{15}|\d{12})$/),
+                mastercardExp = new RegExp(/^5[1-5]\d{14}$/),
+                amexExp = new RegExp(/^37\d{13}$/);
+            if (sCCN.match(visaExp)) {
+                window.console.log("visa");
+            } else if (sCCN.match(mastercardExp)) {
+                window.console.log("mastercard");
+            } else if (sCCN.match(amexExp)) {
+                window.console.log("amex");
             }
         }
-
-        sum += digit;
-        doubleThis = !doubleThis;
-    }
-    
-    return (sum % 10 === 0) ? true : false;
-}
+    };
+};
 
 function populateSize(pizza) {
     "use strict";
@@ -100,7 +104,7 @@ function sizeSelectedHandler(e) {
         return;
     }
     
-    window.console.log("sizeSelectedHandler");
+    //window.console.log("sizeSelectedHandler");
     window.console.log(e.target.value);
 }
 
@@ -197,6 +201,71 @@ function intDisplayPizza(pizza) {
     }
 }
 
+function billingCopy(e) {
+    "use strict";
+    if (e.target.checked === true) {
+        var bFields = $("bill_addr").getElementsByTagName("INPUT"),  cFields = $("cust_addr").getElementsByTagName("INPUT"), i, l;
+        l = bFields.length;
+        for (i = 0; i < l; i += 1) {
+            bFields[i].value = cFields[i].value;
+        }
+    }
+}
+
+function checkAddressInput(e) {
+    "use strict";
+    var id = e.target.id;
+    switch (id) {
+    case "bill_state":
+    case "cust_state":
+        if (e.target.value.length > 2) {
+            e.target.value = e.target.value.toUpperCase().substr(0, 2);
+            return;
+        } else {
+            e.target.value = e.target.value.toUpperCase();
+        }
+        break;
+    case "bill_addr1":
+    case "cust_addr1":
+        break;
+    case "bill_addr2":
+    case "cust_addr2":
+        break;
+    case "bill_city":
+    case "cust_city":
+        break;
+    case "bill_zip":
+    case "cust_zip":
+        break;
+    case "bill_name":
+    case "cust_name":
+        break;
+    default:
+    }
+    $("copy_over").checked = false;
+}
+
+function setExp() {
+    "use strict";
+    var expYear = $("bill_exp_year"), expMon = $("bill_exp_month"), today = new Date(), i, opt, month, year;
+    
+    for (i = 0; i < 10; i += 1) {
+        opt = document.createElement("option");
+        year = today.getYear() % 100 + i;
+        opt.value = year;
+        opt.innerHTML = year.toString();
+        expYear.appendChild(opt);
+    }
+    
+    for (i = 1; i < 12; i += 1) {
+        opt = document.createElement("option");
+        opt.value = i;
+        opt.innerHTML = i.toString();
+        expMon.appendChild(opt);
+    }
+    expMon.value = today.getMonth() + 1;
+}
+
 window.addEventListener("load", function () {
     "use strict";
     var test, testPizza;
@@ -211,6 +280,13 @@ window.addEventListener("load", function () {
     $("sauceDiv").addEventListener("click", sauceSelectedHandler);
     $("toppingsDiv").addEventListener("click", toppingsSelectedHandler);
     
+    $("copy_over").addEventListener("click", billingCopy);
+    
+    $("bill_addr").addEventListener("keyup", checkAddressInput);
+    $("cust_addr").addEventListener("keyup", checkAddressInput);
+    
+    setExp();
+    
     testPizza = new Pizza("Thin Crust");
     testPizza.setSize("Large");
     testPizza.setCheese("extra");
@@ -219,8 +295,9 @@ window.addEventListener("load", function () {
     intDisplayPizza(testPizza);
     
     test = 4512113014843252;
-    window.console.log(test + ": " + (new CreditCard.validateNumber(test) ? "valid" : "invalid"));
+    window.console.log(test + ": " + (new CreditCard(test).isValid() ? "valid" : "invalid"));
+    window.console.log(new CreditCard(test).getType());
     
     test = 4512113014643252;
-    window.console.log(test + ": " + (validateCard(test) ? "valid" : "invalid"));
+    window.console.log(test + ": " + (new CreditCard(test).isValid() ? "valid" : "invalid"));
 });

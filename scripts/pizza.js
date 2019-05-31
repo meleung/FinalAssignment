@@ -1,3 +1,10 @@
+var DoughType = {
+    HT : "Hand Tossed",
+    TC : "Thin Crust",
+    NYS : "New York Style",
+    GF : "Gluten Free"
+};
+
 var gSizes = {
     "Hand Tossed": [
         {

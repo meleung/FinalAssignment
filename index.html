@@ -123,28 +123,39 @@
         <fieldset>
             <legend>Customer Information</legend>
             <!-- Name -->
-            <label for="cust_name">Name:</label><input type="text" id="cust_name"><br>
-            <!-- Address Type -->
-                <!--
-                    Drop down:
-                    - House
-                    - Apartment
-                    - Business
-                    - Campus
-                    - Hotel
-                    - Dorm
-                    - Other... (text field)
-                -->
-            <!-- Street Address -->
-            <label for="cust_addr1">Street Address:</label><input type="text" id="cust_addr1"><br>
-            <!-- Apartment Number, Suite, Room # (optional) -->
-            <label for="cust_addr2">Apt/Ste/Room (optional):</label><input type="text" id="cust_addr2"><br>
-            <!-- City -->
-            <label for="cust_city">City:</label><input type="text" id="cust_city"><br>
-            <!-- State -->
-            <label for="cust_state">State:</label><input type="text" id="cust_state"><br>
-            <!-- Zip -->
-            <label for="cust_zip">Zip:</label><input type="text" id="cust_zip"><br>
+            <div id="cust_addr">
+                <label for="cust_name">Name:</label><input type="text" id="cust_name"><br>
+                <!-- Address Type -->
+                    <!--
+                        Drop down:
+                        - House
+                        - Apartment
+                        - Business
+                        - Campus
+                        - Hotel
+                        - Dorm
+                        - Other... (text field)
+                    -->
+                <select name="cust_addr_type">
+                    <option value="House">House</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Business">Business</option>
+                    <option value="Campus">Campus</option>
+                    <option value="Hotel">Hotel</option>
+                    <option value="Dorm">Dorm</option>
+                    <option value="Other...">Other...</option>
+                </select><br>
+                <!-- Street Address -->
+                <label for="cust_addr1">Street Address:</label><input type="text" id="cust_addr1"><br>
+                <!-- Apartment Number, Suite, Room # (optional) -->
+                <label for="cust_addr2">Apt/Ste/Room (optional):</label><input type="text" id="cust_addr2"><br>
+                <!-- City -->
+                <label for="cust_city">City:</label><input type="text" id="cust_city"><br>
+                <!-- State -->
+                <label for="cust_state">State:</label><input type="text" id="cust_state"><br>
+                <!-- Zip -->
+                <label for="cust_zip">Zip:</label><input type="text" id="cust_zip"><br>
+            </div>
             <!-- Phone -->
             <label for="cust_phone">Phone:</label><input type="text" id="cust_phone"><br>
             <!-- Email -->
@@ -156,27 +167,29 @@
             <input type="checkbox" name="copy" id="copy_over">
             <label for="copy_over">Same as delivery information</label><br>
             <!-- Full Name -->
-            <label for="bill_name">Name:</label><input type="text" id="bill_name"><br>
-            <!-- Street Address -->
-            <label for="bill_addr1">Street Address:</label><input type="text" id="bill_addr1"><br>
-            <!-- Apartment Number, Suite, Room # (optional) -->
-            <label for="bill_addr2">Apt/Ste/Room (optional):</label><input type="text" id="bill_addr2"><br>
-            <!-- City -->
-            <label for="bill_city">City:</label><input type="text" id="bill_city"><br>
-            <!-- State -->
-            <label for="bill_state">State:</label><input type="text" id="bill_state"><br>
-            <!-- Zip -->
-            <label for="bill_zip">Zip:</label><input type="text" id="bill_zip"><br>            
+            <div id="bill_addr">
+                <label for="bill_name">Name:</label><input type="text" id="bill_name"><br>
+                <!-- Street Address -->
+                <label for="bill_addr1">Street Address:</label><input type="text" id="bill_addr1"><br>
+                <!-- Apartment Number, Suite, Room # (optional) -->
+                <label for="bill_addr2">Apt/Ste/Room (optional):</label><input type="text" id="bill_addr2"><br>
+                <!-- City -->
+                <label for="bill_city">City:</label><input type="text" id="bill_city"><br>
+                <!-- State -->
+                <label for="bill_state">State:</label><input type="text" id="bill_state"><br>
+                <!-- Zip -->
+                <label for="bill_zip">Zip:</label><input type="text" id="bill_zip"><br>
+            </div>
             <!-- Credit Card Number -->
             <label for="bill_cc">Credit Card Number:</label><input type="text" id="bill_cc"><br>
             <!-- CVC Number -->
             <label for="bill_cvc">CVC:</label><input type="text" id="bill_cvc"><br>
             <!-- Expiration -->
             <p>Expiration:</p>
-                <!-- Drop down: Year -->
-                <select name="bill_exp_year"></select>
                 <!-- Drop down: Month -->
-                <select name="bill_exp_month"></select>
+                <select name="bill_exp_month" id="bill_exp_month"></select>
+                <!-- Drop down: Year -->
+                <select name="bill_exp_year" id="bill_exp_year"></select>
         </fieldset>
         <!-- "Finished Building Pizza" Button -->
         <input type="submit" value="Finished Building Pizza" id="orderPizzaBtn">
